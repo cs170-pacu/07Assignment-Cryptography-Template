@@ -152,23 +152,29 @@ def decode(sEncodedLetter, lMappingTable):
 
 # MAIN CODE (DO NOT CHANGE ANYTHING BELOW THIS LINE)
 ################################################################################
+
 TITLE = 'Cryptography - Enigma Machine'
 ENCRYPT = 'E'
 DECRYPT = 'D'
 QUIT = 'Q'
 dConstants = {ENCRYPT:['plaintext', 'ciphertext', 'encrypted'], 
               DECRYPT:['ciphertext', 'plaintext', 'decrypted']}
+
 printHeading(TITLE)
-# add in debug code...
+
+bDebug = False
+if 'Y' == input('Are you debugging (Y/N)? ').title():
+    bDebug = True
+
 sInput = input('Enter E) for encryption, D) for decryption, or Q) for quit: ').upper()
 while QUIT != sInput:
     if ENCRYPT == sInput or DECRYPT == sInput:
         sKeys = getKeys()
         lMappingTable = constructMappingTable(sKeys)
         
-        # Uncomment next two lines for part 1!!!!!
-        #for dMap in lMappingTable:
-        #    print(dMap)
+        if bDebug and lMappingTable is not None:
+            for dMap in lMappingTable:
+                print(dMap)
         
         lInput = readFile(dConstants[sInput][0])
         if ENCRYPT == sInput:
@@ -176,8 +182,9 @@ while QUIT != sInput:
         else:
             lOutput = decodeStrings(lInput, lMappingTable)
         
-        # Comment next line for part 2        
-        print(lOutput)
+        if bDebug:
+            print(lOutput)
 
         writeFile(dConstants[sInput][1], lOutput, dConstants[sInput][2])
+        
     sInput = input('Enter E) for encryption, D) for decryption, or Q) for quit: ').upper()
