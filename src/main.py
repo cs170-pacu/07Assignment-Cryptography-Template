@@ -84,6 +84,7 @@ def incrementCharacter(sLetter):
     Returns:
         string: the next letter in the alphabet
     '''
+    ## DO NOT EDIT THIS FUNCTION!!!!!
     if sLetter is not None and 1 == len(sLetter):
         if 'Z' == sLetter:
             sNextLetter = 'A'
@@ -149,7 +150,7 @@ def decode(sEncodedLetter, lMappingTable):
 
 
 
-# MAIN CODE
+# MAIN CODE (DO NOT CHANGE ANYTHING BELOW THIS LINE)
 ################################################################################
 TITLE = 'Cryptography - Enigma Machine'
 ENCRYPT = 'E'
@@ -158,7 +159,7 @@ QUIT = 'Q'
 dConstants = {ENCRYPT:['plaintext', 'ciphertext', 'encrypted'], 
               DECRYPT:['ciphertext', 'plaintext', 'decrypted']}
 printHeading(TITLE)
-
+# add in debug code...
 sInput = input('Enter E) for encryption, D) for decryption, or Q) for quit: ').upper()
 while QUIT != sInput:
     if ENCRYPT == sInput or DECRYPT == sInput:
@@ -175,7 +176,7 @@ while QUIT != sInput:
         else:
             lOutput = decodeStrings(lInput, lMappingTable)
         
-        # Remove next line for part 2        
+        # Comment next line for part 2        
         print(lOutput)
 
         writeFile(dConstants[sInput][1], lOutput, dConstants[sInput][2])
